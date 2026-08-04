@@ -17,7 +17,24 @@
   puede llegar a ese localhost. Plan B en curso: pedir al usuario una clave de
   acceso de Admin API generada a mano (app personalizada) para leer/escribir el
   producto sin pasar por `store auth`.
-- Producto: aún sin leer (pendiente de la clave de acceso de Admin API).
+- Producto: LEÍDO por la vía pública `products.json` (sin necesitar Admin API):
+  - id numérico: 9416678768892 → gid probable `gid://shopify/Product/9416678768892`
+  - handle: electric-scalp-vibration-massage-comb-infrared-head-knead-massager-red-light-hair-growth-liquid-oil-applicator-anti-hair-loss
+  - Título original (proveedor, en inglés, a reescribir): "Electric Scalp
+    Vibration Massage Comb Infrared Head Knead Massager Red Light Hair Growth
+    Liquid Oil Applicator Anti-Hair Loss"
+  - Qué es: peine/cepillo masajeador eléctrico de cuero cabelludo con luz roja
+    infrarroja (630nm), 3 modos de vibración/amasado tipo EMS, depósito de 6ML
+    para infundir sérum/aceite capilar mientras se masajea. Colores: rojo y
+    negro. Precio actual: 48.99 (moneda de la tienda).
+  - 9 fotos descargadas en `fotos-producto/producto-1.jpg` … `producto-9.jpg`.
+    Calidad de imagen buena (renders + una foto con modelo), pero con textos
+    promocionales en inglés incrustados en las imágenes — estética de anuncio
+    de proveedor, no de marca propia.
+  - Escritura (título/descripción/plantilla) vía Admin API: PENDIENTE — sigue
+    bloqueada la Sesión B (ver arriba). Si no se resuelve, usar plan B: dejar
+    el texto listo para copiar/pegar y las instrucciones de asignar plantilla
+    a mano (3 pasos) en la fase 5.
 
 ## Fases completadas
 - [x] 0 Entorno
