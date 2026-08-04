@@ -186,11 +186,11 @@
             },
             "tienda": {
               "type": "link_list",
-              "settings": { "heading": "Tienda", "menu": "main-menu" }
+              "settings": { "heading": "Shop", "menu": "main-menu" }
             },
             "ayuda": {
               "type": "link_list",
-              "settings": { "heading": "Ayuda", "menu": "footer" }
+              "settings": { "heading": "Help", "menu": "footer" }
             }
           },
           "block_order": ["marca", "tienda", "ayuda"],

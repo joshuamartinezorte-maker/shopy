@@ -3,68 +3,148 @@
     "mt-hero": {
       "type": "mt-hero",
       "settings": {
-        "eyebrow": "Cuidado capilar de nueva generación",
-        "headline": "Masaje, luz roja y brillo. Todo en tu mano.",
-        "subheadline": "El ritual diario Orlure que estimula tu cuero cabelludo con luz roja infrarroja y masaje, para un pelo con más vida.",
-        "boton_texto": "Comprar ahora",
+        "eyebrow": "Next-generation hair care",
+        "headline": "Massage, red light, and shine. All in your hand.",
+        "subheadline": "The daily Orlure ritual that stimulates your scalp with infrared red light and massage, for hair with more life.",
+        "boton_texto": "Shop now",
         "boton_url": "/collections/all",
-        "boton_secundario_texto": "Descubre cómo funciona",
+        "boton_secundario_texto": "See how it works",
         "boton_secundario_url": "#mt-como-usar"
       }
     },
     "mt-confianza": {
       "type": "mt-confianza",
       "blocks": {
-        "b1": { "type": "item", "settings": { "icono": "caja", "texto": "Envío gratis y seguro" } },
-        "b2": { "type": "item", "settings": { "icono": "candado", "texto": "Pago 100% protegido" } },
-        "b3": { "type": "item", "settings": { "icono": "escudo", "texto": "Devolución de 30 días" } },
-        "b4": { "type": "item", "settings": { "icono": "corazon", "texto": "+1.200 clientas satisfechas" } }
+        "b1": {
+          "type": "item",
+          "settings": {
+            "icono": "caja",
+            "texto": "Free & secure shipping"
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "icono": "candado",
+            "texto": "100% secure payment"
+          }
+        },
+        "b3": {
+          "type": "item",
+          "settings": {
+            "icono": "escudo",
+            "texto": "15-day returns"
+          }
+        },
+        "b4": {
+          "type": "item",
+          "settings": {
+            "icono": "corazon",
+            "texto": "+1,200 happy customers"
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3", "b4"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
       "settings": {}
     },
     "mt-beneficios": {
       "type": "mt-beneficios",
       "blocks": {
-        "b1": { "type": "beneficio", "settings": { "titulo": "Luz roja 630nm", "texto": "Infrarrojo que llega a la raíz para estimular el cuero cabelludo en cada sesión." } },
-        "b2": { "type": "beneficio", "settings": { "titulo": "3 modos de masaje", "texto": "Vibración tipo EMS con tres intensidades, de un descanso rápido a un masaje profundo." } },
-        "b3": { "type": "beneficio", "settings": { "titulo": "Depósito de sérum", "texto": "6ML para infundir tu aceite o sérum capilar favorito mientras masajeas." } },
-        "b4": { "type": "beneficio", "settings": { "titulo": "Diseño ergonómico", "texto": "Ligero, inalámbrico y fácil de sujetar, pensado para el uso diario." } }
+        "b1": {
+          "type": "beneficio",
+          "settings": {
+            "titulo": "630nm Red Light",
+            "texto": "Infrared light that reaches the root to stimulate your scalp in every session."
+          }
+        },
+        "b2": {
+          "type": "beneficio",
+          "settings": {
+            "titulo": "3 Massage Modes",
+            "texto": "EMS-style vibration with three intensities, from a quick relax to a deep massage."
+          }
+        },
+        "b3": {
+          "type": "beneficio",
+          "settings": {
+            "titulo": "Serum Reservoir",
+            "texto": "6ML to infuse your favorite hair oil or serum while you massage."
+          }
+        },
+        "b4": {
+          "type": "beneficio",
+          "settings": {
+            "titulo": "Ergonomic Design",
+            "texto": "Lightweight, cordless, and easy to hold, built for everyday use."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3", "b4"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
       "settings": {
-        "eyebrow": "Por qué Orlure",
-        "headline": "Tecnología pensada para tu cuero cabelludo",
-        "subheadline": "Cuatro razones por las que se ha convertido en el ritual favorito de miles de personas."
+        "eyebrow": "Why Orlure",
+        "headline": "Technology designed for your scalp",
+        "subheadline": "Four reasons it's become the favorite ritual of thousands."
       }
     },
     "mt-como-usar": {
       "type": "mt-como-usar",
       "blocks": {
-        "b1": { "type": "paso", "settings": { "titulo": "Prepara", "texto": "Añade unas gotas de tu sérum o aceite favorito en el depósito de 6ML." } },
-        "b2": { "type": "paso", "settings": { "titulo": "Masajea", "texto": "Desliza el cepillo por tu cuero cabelludo activando la luz roja y el modo de vibración que prefieras." } },
-        "b3": { "type": "paso", "settings": { "titulo": "Disfruta", "texto": "3-5 minutos al día son suficientes para notar un cuero cabelludo más relajado y un pelo con más brillo." } }
+        "b1": {
+          "type": "paso",
+          "settings": {
+            "titulo": "Prep",
+            "texto": "Add a few drops of your favorite serum or oil to the 6ML reservoir."
+          }
+        },
+        "b2": {
+          "type": "paso",
+          "settings": {
+            "titulo": "Massage",
+            "texto": "Glide the brush over your scalp with the red light and your favorite vibration mode on."
+          }
+        },
+        "b3": {
+          "type": "paso",
+          "settings": {
+            "titulo": "Enjoy",
+            "texto": "Just 3-5 minutes a day is enough to feel a more relaxed scalp and see shinier hair."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
       "settings": {
-        "eyebrow": "Ritual Orlure",
-        "headline": "Tu ritual en 3 pasos"
+        "eyebrow": "The Orlure Ritual",
+        "headline": "Your ritual in 3 steps"
       }
     },
     "mt-antes-despues": {
       "type": "mt-antes-despues",
       "settings": {
-        "eyebrow": "Resultados",
-        "headline": "Antes y después",
-        "subheadline": "Desliza para ver la diferencia con el uso constante del ritual Orlure.",
-        "texto_antes": "Antes",
-        "texto_despues": "Después"
+        "eyebrow": "Results",
+        "headline": "Before & After",
+        "subheadline": "Slide to see the difference with consistent use of the Orlure ritual.",
+        "texto_antes": "Before",
+        "texto_despues": "After"
       }
     },
     "coleccion-destacada": {
       "type": "featured-collection",
       "settings": {
-        "title": "Descubre la colección Orlure",
+        "title": "Discover the Orlure Collection",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
@@ -92,27 +172,69 @@
     "mt-resenas": {
       "type": "mt-resenas",
       "blocks": {
-        "b1": { "type": "resena", "settings": { "nombre": "Marta G.", "estrellas": 5, "texto": "Lo uso cada noche antes de dormir, es súper relajante y mi pelo se ve con más volumen." } },
-        "b2": { "type": "resena", "settings": { "nombre": "Lucía R.", "estrellas": 5, "texto": "La luz roja se nota calentita y el masaje es una pasada. Lo recomiendo muchísimo." } },
-        "b3": { "type": "resena", "settings": { "nombre": "Ana P.", "estrellas": 4, "texto": "Fácil de usar y el depósito de sérum es un acierto, no ensucia nada." } },
-        "b4": { "type": "resena", "settings": { "nombre": "Sara M.", "estrellas": 5, "texto": "Se ha convertido en mi momento favorito del día, se siente como un spa en casa." } }
+        "b1": {
+          "type": "resena",
+          "settings": {
+            "nombre": "Sarah M.",
+            "estrellas": 5,
+            "texto": "I use it every night before bed, it's super relaxing and my hair looks fuller."
+          }
+        },
+        "b2": {
+          "type": "resena",
+          "settings": {
+            "nombre": "Emily R.",
+            "estrellas": 5,
+            "texto": "The red light feels warm and the massage is amazing. I highly recommend it."
+          }
+        },
+        "b3": {
+          "type": "resena",
+          "settings": {
+            "nombre": "Jessica P.",
+            "estrellas": 4,
+            "texto": "Easy to use, and the serum reservoir is a great touch — no mess at all."
+          }
+        },
+        "b4": {
+          "type": "resena",
+          "settings": {
+            "nombre": "Olivia T.",
+            "estrellas": 5,
+            "texto": "It's become my favorite part of the day, it feels like a spa at home."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3", "b4"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
       "settings": {
-        "eyebrow": "Opiniones",
-        "headline": "Lo que dicen quienes ya lo usan"
+        "eyebrow": "Reviews",
+        "headline": "What our customers are saying"
       }
     },
     "mt-cta": {
       "type": "mt-cta",
       "settings": {
-        "eyebrow": "Oferta de lanzamiento",
-        "headline": "Empieza tu ritual Orlure hoy",
-        "subheadline": "Envío gratuito y seguro, y devolución fácil si no te enamora a la primera.",
-        "boton_texto": "Comprar ahora",
+        "eyebrow": "Launch offer",
+        "headline": "Start your Orlure ritual today",
+        "subheadline": "Free, secure shipping, and easy returns if it's not love at first use.",
+        "boton_texto": "Shop now",
         "boton_url": "/collections/all"
       }
     }
   },
-  "order": ["mt-hero", "mt-confianza", "mt-beneficios", "mt-como-usar", "mt-antes-despues", "coleccion-destacada", "mt-resenas", "mt-cta"]
+  "order": [
+    "mt-hero",
+    "mt-confianza",
+    "mt-beneficios",
+    "mt-como-usar",
+    "mt-antes-despues",
+    "coleccion-destacada",
+    "mt-resenas",
+    "mt-cta"
+  ]
 }

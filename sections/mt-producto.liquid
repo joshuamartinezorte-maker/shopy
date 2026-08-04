@@ -14,13 +14,14 @@
     <div class="mt-producto__grid">
 
       <div class="mt-galeria mt-reveal">
+        {%- assign fotos_galeria = section.blocks | where: 'type', 'foto_galeria' -%}
         <div class="mt-galeria__principal">
           <img data-mt-galeria-principal
-               src="{% if section.blocks.size > 0 and section.blocks[0].settings.imagen != blank %}{{ section.blocks[0].settings.imagen | image_url: width: 1200 }}{% endif %}"
+               src=""
                alt="{{ product.title | escape }}" width="1200" height="1200" loading="eager" fetchpriority="high">
         </div>
         <div class="mt-galeria__miniaturas">
-          {%- for block in section.blocks -%}
+          {%- for block in fotos_galeria -%}
             {%- assign idx = forloop.index -%}
             {%- case idx -%}
               {%- when 1 -%}{%- assign respaldo = 'mt-producto-galeria-1.jpg' -%}
@@ -120,16 +121,15 @@
       </div>
 
       <div class="mt-caracteristicas">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'caracteristica' -%}
-            <div class="mt-caracteristica mt-reveal" {{ block.shopify_attributes }}>
-              <span class="mt-caracteristica__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-              <div>
-                <p class="mt-caracteristica__title">{{ block.settings.titulo }}</p>
-                <p class="mt-caracteristica__text">{{ block.settings.texto }}</p>
-              </div>
+        {%- assign caracteristicas = section.blocks | where: 'type', 'caracteristica' -%}
+        {%- for block in caracteristicas -%}
+          <div class="mt-caracteristica mt-reveal" {{ block.shopify_attributes }}>
+            <span class="mt-caracteristica__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <div>
+              <p class="mt-caracteristica__title">{{ block.settings.titulo }}</p>
+              <p class="mt-caracteristica__text">{{ block.settings.texto }}</p>
             </div>
-          {%- endif -%}
+          </div>
         {%- endfor -%}
       </div>
 
@@ -157,18 +157,18 @@
   "settings": [
     { "type": "text", "id": "titulo", "label": "Título mostrado (vacío = usa el título del catálogo)" },
     { "type": "number", "id": "num_resenas", "label": "Número de opiniones a mostrar", "default": 128 },
-    { "type": "textarea", "id": "intro", "label": "Frase corta bajo el precio", "default": "Convierte tu rutina capilar en un momento de bienestar diario." },
-    { "type": "text", "id": "texto_boton", "label": "Texto del botón de compra", "default": "Añadir al carrito" },
-    { "type": "text", "id": "texto_agotado", "label": "Texto cuando está agotado", "default": "Agotado" },
+    { "type": "textarea", "id": "intro", "label": "Frase corta bajo el precio", "default": "Turn your hair routine into a daily moment of wellness." },
+    { "type": "text", "id": "texto_boton", "label": "Texto del botón de compra", "default": "Add to cart" },
+    { "type": "text", "id": "texto_agotado", "label": "Texto cuando está agotado", "default": "Sold out" },
     { "type": "header", "content": "Fila de confianza" },
-    { "type": "text", "id": "confianza_1", "label": "Confianza 1", "default": "Envío gratis y seguro" },
-    { "type": "text", "id": "confianza_2", "label": "Confianza 2", "default": "Devolución 30 días" },
-    { "type": "text", "id": "confianza_3", "label": "Confianza 3", "default": "Pago 100% seguro" },
+    { "type": "text", "id": "confianza_1", "label": "Confianza 1", "default": "Free & secure shipping" },
+    { "type": "text", "id": "confianza_2", "label": "Confianza 2", "default": "15-day returns" },
+    { "type": "text", "id": "confianza_3", "label": "Confianza 3", "default": "100% secure payment" },
     { "type": "header", "content": "Descripción" },
-    { "type": "text", "id": "descripcion_eyebrow", "label": "Texto pequeño superior", "default": "Sobre Orlure" },
-    { "type": "text", "id": "descripcion_titulo", "label": "Título de la descripción", "default": "Diseñado para tu ritual diario" },
-    { "type": "textarea", "id": "descripcion_texto", "label": "Texto de la descripción", "default": "Un cepillo masajeador que une luz roja infrarroja, vibración suave y un depósito para tu sérum favorito, en un cuerpo ligero e inalámbrico pensado para acompañarte cada día." },
-    { "type": "textarea", "id": "incluye", "label": "Qué incluye (una línea por artículo)", "default": "1x Cepillo masajeador capilar Orlure\n1x Cable de carga USB\n1x Guía rápida de uso" },
+    { "type": "text", "id": "descripcion_eyebrow", "label": "Texto pequeño superior", "default": "About Orlure" },
+    { "type": "text", "id": "descripcion_titulo", "label": "Título de la descripción", "default": "Designed for your daily ritual" },
+    { "type": "textarea", "id": "descripcion_texto", "label": "Texto de la descripción", "default": "A massage brush that combines infrared red light, gentle vibration, and a reservoir for your favorite serum, in a lightweight, cordless body designed to be with you every day." },
+    { "type": "textarea", "id": "incluye", "label": "Qué incluye (una línea por artículo)", "default": "1x Orlure Scalp Massage Brush\n1x USB Charging Cable\n1x Quick Start Guide" },
     { "type": "header", "content": "Espaciado" },
     { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 48 },
     { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
@@ -198,10 +198,10 @@
         { "type": "foto_galeria" },
         { "type": "foto_galeria" },
         { "type": "foto_galeria" },
-        { "type": "caracteristica", "settings": { "titulo": "Luz roja infrarroja 630nm", "texto": "Estimula el cuero cabelludo desde la raíz en cada sesión." } },
-        { "type": "caracteristica", "settings": { "titulo": "3 modos de masaje", "texto": "De un descanso rápido a un masaje profundo tipo EMS." } },
-        { "type": "caracteristica", "settings": { "titulo": "Depósito de 6ML", "texto": "Infunde tu aceite o sérum mientras masajeas, sin goteos." } },
-        { "type": "caracteristica", "settings": { "titulo": "Diseño inalámbrico", "texto": "Ligero, ergonómico y fácil de llevar contigo." } }
+        { "type": "caracteristica", "settings": { "titulo": "630nm Infrared Red Light", "texto": "Stimulates your scalp from the root in every session." } },
+        { "type": "caracteristica", "settings": { "titulo": "3 Massage Modes", "texto": "From a quick relax to a deep EMS-style massage." } },
+        { "type": "caracteristica", "settings": { "titulo": "6ML Reservoir", "texto": "Infuse your oil or serum as you massage, with no drips." } },
+        { "type": "caracteristica", "settings": { "titulo": "Cordless Design", "texto": "Lightweight, ergonomic, and easy to take with you." } }
       ]
     }
   ]
