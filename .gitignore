@@ -1,0 +1,3 @@
+.tmp-*.json
+clave-openai.txt
+node_modules/
