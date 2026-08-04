@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "principal": {
+      "type": "mt-producto",
+      "blocks": {
+        "g1": { "type": "foto_galeria", "settings": {} },
+        "g2": { "type": "foto_galeria", "settings": {} },
+        "g3": { "type": "foto_galeria", "settings": {} },
+        "g4": { "type": "foto_galeria", "settings": {} },
+        "g5": { "type": "foto_galeria", "settings": {} },
+        "c1": { "type": "caracteristica", "settings": { "titulo": "Luz roja infrarroja 630nm", "texto": "Estimula el cuero cabelludo desde la raíz en cada sesión." } },
+        "c2": { "type": "caracteristica", "settings": { "titulo": "3 modos de masaje", "texto": "De un descanso rápido a un masaje profundo tipo EMS." } },
+        "c3": { "type": "caracteristica", "settings": { "titulo": "Depósito de 6ML", "texto": "Infunde tu aceite o sérum mientras masajeas, sin goteos." } },
+        "c4": { "type": "caracteristica", "settings": { "titulo": "Diseño inalámbrico", "texto": "Ligero, ergonómico y fácil de llevar contigo." } }
+      },
+      "block_order": ["g1", "g2", "g3", "g4", "g5", "c1", "c2", "c3", "c4"],
+      "settings": {
+        "titulo": "Cepillo Masajeador Capilar LED Rojo Orlure",
+        "num_resenas": 128,
+        "intro": "Convierte tu rutina capilar en un momento de bienestar diario.",
+        "texto_boton": "Añadir al carrito",
+        "texto_agotado": "Agotado",
+        "confianza_1": "Envío gratis y seguro",
+        "confianza_2": "Devolución 30 días",
+        "confianza_3": "Pago 100% seguro",
+        "descripcion_eyebrow": "Sobre Orlure",
+        "descripcion_titulo": "Diseñado para tu ritual diario",
+        "descripcion_texto": "Un cepillo masajeador que une luz roja infrarroja, vibración suave y un depósito para tu sérum favorito, en un cuerpo ligero e inalámbrico pensado para acompañarte cada día.",
+        "incluye": "1x Cepillo masajeador capilar Orlure\n1x Cable de carga USB\n1x Guía rápida de uso"
+      }
+    },
+    "como-usar": {
+      "type": "mt-como-usar",
+      "blocks": {
+        "b1": { "type": "paso", "settings": { "titulo": "Prepara", "texto": "Añade unas gotas de tu sérum o aceite favorito en el depósito de 6ML." } },
+        "b2": { "type": "paso", "settings": { "titulo": "Masajea", "texto": "Desliza el cepillo por tu cuero cabelludo activando la luz roja y el modo de vibración que prefieras." } },
+        "b3": { "type": "paso", "settings": { "titulo": "Disfruta", "texto": "3-5 minutos al día son suficientes para notar un cuero cabelludo más relajado y un pelo con más brillo." } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": {
+        "eyebrow": "Ritual Orlure",
+        "headline": "Tu ritual en 3 pasos"
+      }
+    },
+    "antes-despues": {
+      "type": "mt-antes-despues",
+      "settings": {
+        "eyebrow": "Resultados",
+        "headline": "Antes y después",
+        "subheadline": "Desliza para ver la diferencia con el uso constante del ritual Orlure.",
+        "texto_antes": "Antes",
+        "texto_despues": "Después"
+      }
+    },
+    "resenas": {
+      "type": "mt-resenas",
+      "blocks": {
+        "b1": { "type": "resena", "settings": { "nombre": "Marta G.", "estrellas": 5, "texto": "Lo uso cada noche antes de dormir, es súper relajante y mi pelo se ve con más volumen." } },
+        "b2": { "type": "resena", "settings": { "nombre": "Lucía R.", "estrellas": 5, "texto": "La luz roja se nota calentita y el masaje es una pasada. Lo recomiendo muchísimo." } },
+        "b3": { "type": "resena", "settings": { "nombre": "Ana P.", "estrellas": 4, "texto": "Fácil de usar y el depósito de sérum es un acierto, no ensucia nada." } },
+        "b4": { "type": "resena", "settings": { "nombre": "Sara M.", "estrellas": 5, "texto": "Se ha convertido en mi momento favorito del día, se siente como un spa en casa." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "eyebrow": "Opiniones",
+        "headline": "Lo que dicen quienes ya lo usan"
+      }
+    }
+  },
+  "order": ["principal", "como-usar", "antes-despues", "resenas"]
+}

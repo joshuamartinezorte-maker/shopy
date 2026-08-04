@@ -1,0 +1,61 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .mt-h2 { font-size: {{ section.settings.heading_size }}px; }
+{% endstyle %}
+
+{%- assign el_producto = section.settings.producto -%}
+
+<section class="mt-cta mt-section">
+  <div class="mt-container">
+    <div class="mt-cta__inner mt-reveal">
+      <div class="mt-cta__text">
+        {%- if section.settings.eyebrow != blank -%}<div class="mt-eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+        <h2 class="mt-h2">{{ section.settings.headline }}</h2>
+        {%- if section.settings.subheadline != blank -%}<p class="mt-body-text" style="margin-top:12px;">{{ section.settings.subheadline }}</p>{%- endif -%}
+
+        {%- if el_producto != blank -%}
+          <div class="mt-cta__precio">
+            <span class="mt-cta__precio-actual">{{ el_producto.selected_or_first_available_variant.price | money }}</span>
+            {%- if el_producto.selected_or_first_available_variant.compare_at_price > el_producto.selected_or_first_available_variant.price -%}
+              <span class="mt-cta__precio-anterior">{{ el_producto.selected_or_first_available_variant.compare_at_price | money }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="mt-hero__actions">
+        {%- if el_producto != blank -%}
+          <a href="{{ el_producto.url }}" class="mt-btn mt-btn-primario">{{ section.settings.boton_texto }}</a>
+        {%- else -%}
+          <a href="{{ section.settings.boton_url | default: '#' }}" class="mt-btn mt-btn-primario">{{ section.settings.boton_texto }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT — Llamada final",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "producto", "label": "Producto a mostrar (opcional, usa su precio real)" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Oferta de lanzamiento" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Empieza tu ritual Orlure hoy" },
+    { "type": "textarea", "id": "subheadline", "label": "Texto bajo el título", "default": "Envío rápido y devolución fácil si no te enamora a la primera." },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón", "default": "Comprar ahora" },
+    { "type": "url", "id": "boton_url", "label": "Enlace del botón (si no eliges producto)" },
+    { "type": "header", "content": "Tipografía" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 24, "max": 64, "step": 2, "unit": "px", "default": 38 },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "presets": [ { "name": "MT — Llamada final" } ]
+}
+{% endschema %}

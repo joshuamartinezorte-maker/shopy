@@ -1,0 +1,77 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: var(--mt-color-fondo);
+  }
+  #shopify-section-{{ section.id }} .mt-hero__content { text-align: {{ section.settings.text_align }}; }
+  #shopify-section-{{ section.id }} .mt-h1 { font-size: {{ section.settings.heading_size }}px; }
+  #shopify-section-{{ section.id }} .mt-hero__subheadline { font-size: {{ section.settings.body_size }}px; }
+  #shopify-section-{{ section.id }} .mt-hero__overlay { opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; }
+  @media (max-width: 540px) {
+    #shopify-section-{{ section.id }} .mt-h1 { font-size: {{ section.settings.heading_size | times: 0.62 | round }}px; }
+  }
+{% endstyle %}
+
+<section class="mt-hero mt-section">
+  <div class="mt-hero__overlay"></div>
+  {%- if section.settings.imagen_fondo != blank -%}
+    <img class="mt-hero__bg" src="{{ section.settings.imagen_fondo | image_url: width: 2400 }}"
+         alt="{{ section.settings.imagen_fondo.alt | escape }}" width="2400" height="1600" loading="eager" fetchpriority="high">
+  {%- else -%}
+    <img class="mt-hero__bg" src="{{ 'mt-hero-fondo.jpg' | asset_url }}" alt="" width="2400" height="1600" loading="eager" fetchpriority="high">
+  {%- endif -%}
+
+  <div class="mt-container">
+    <div class="mt-hero__content mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="mt-eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- endif -%}
+      <h1 class="mt-h1">{{ section.settings.headline }}</h1>
+      {%- if section.settings.subheadline != blank -%}
+        <p class="mt-hero__subheadline">{{ section.settings.subheadline }}</p>
+      {%- endif -%}
+      <div class="mt-hero__actions">
+        {%- if section.settings.boton_texto != blank -%}
+          <a href="{{ section.settings.boton_url | default: '#' }}" class="mt-btn mt-btn-primario">{{ section.settings.boton_texto }}</a>
+        {%- endif -%}
+        {%- if section.settings.boton_secundario_texto != blank -%}
+          <a href="{{ section.settings.boton_secundario_url | default: '#' }}" class="mt-btn mt-btn-secundario">{{ section.settings.boton_secundario_texto }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-hero__scroll" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "MT — Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "imagen_fondo", "label": "Imagen de fondo" },
+    { "type": "range", "id": "overlay_opacity", "label": "Oscurecer imagen de fondo (%)", "min": 0, "max": 100, "step": 5, "default": 85 },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Cuidado capilar de nueva generación" },
+    { "type": "text", "id": "headline", "label": "Titular", "default": "Masaje, luz roja y brillo. Todo en tu mano." },
+    { "type": "textarea", "id": "subheadline", "label": "Texto bajo el titular", "default": "El ritual diario que estimula tu cuero cabelludo con luz roja infrarroja y masaje, para un pelo con más vida." },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón principal", "default": "Comprar ahora" },
+    { "type": "url", "id": "boton_url", "label": "Enlace del botón principal" },
+    { "type": "text", "id": "boton_secundario_texto", "label": "Texto del botón secundario", "default": "Descubre cómo funciona" },
+    { "type": "url", "id": "boton_secundario_url", "label": "Enlace del botón secundario" },
+    { "type": "header", "content": "Tipografía" },
+    { "type": "select", "id": "text_align", "label": "Alineación", "options": [
+        {"value": "left", "label": "Izquierda"},
+        {"value": "center", "label": "Centro"}
+      ], "default": "left" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del titular (px)", "min": 32, "max": 96, "step": 2, "unit": "px", "default": 64 },
+    { "type": "range", "id": "body_size", "label": "Tamaño del texto (px)", "min": 14, "max": 26, "step": 1, "unit": "px", "default": 18 },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 }
+  ],
+  "presets": [ { "name": "MT — Hero" } ]
+}
+{% endschema %}

@@ -1,0 +1,70 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: var(--mt-color-fondo-alt);
+    border-top: 1px solid var(--mt-color-borde);
+    border-bottom: 1px solid var(--mt-color-borde);
+  }
+{% endstyle %}
+
+<section class="mt-section">
+  <div class="mt-container">
+    <div class="mt-confianza-barra mt-reveal" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px;">
+      {%- for block in section.blocks -%}
+        <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--mt-color-texto-muted);" {{ block.shopify_attributes }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:20px;height:20px;color:var(--mt-color-dorado); flex-shrink:0;">
+            {%- case block.settings.icono -%}
+              {%- when 'candado' -%}<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+              {%- when 'caja' -%}<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/>
+              <path d="M3 7l6-4h6l6 4M3 7l8 4 10-4"/>
+              {%- when 'escudo' -%}<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/>
+              {%- when 'corazon' -%}<path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.6 5 6.2 5c2 0 3.3 1 4.8 3 1.5-2 2.8-3 4.8-3 3.6 0 5.5 3.9 3.7 7.5C19 16.65 12 21 12 21z"/>
+            {%- endcase -%}
+          </svg>
+          {{ block.settings.texto }}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT — Barra de confianza",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Elemento",
+      "settings": [
+        { "type": "select", "id": "icono", "label": "Icono", "options": [
+            {"value": "candado", "label": "Candado (pago seguro)"},
+            {"value": "caja", "label": "Caja (envío)"},
+            {"value": "escudo", "label": "Escudo (garantía)"},
+            {"value": "corazon", "label": "Corazón (clientas)"}
+          ], "default": "candado" },
+        { "type": "text", "id": "texto", "label": "Texto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT — Barra de confianza",
+      "blocks": [
+        { "type": "item", "settings": { "icono": "candado", "texto": "Pago 100% seguro" } },
+        { "type": "item", "settings": { "icono": "caja", "texto": "Envío en 24-48h" } },
+        { "type": "item", "settings": { "icono": "escudo", "texto": "Devolución de 30 días" } },
+        { "type": "item", "settings": { "icono": "corazon", "texto": "+1.200 clientas satisfechas" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

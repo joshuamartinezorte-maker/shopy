@@ -6,61 +6,61 @@
       "color_schemes": {
         "scheme-1": {
           "settings": {
-            "background": "#FFFFFF",
+            "background": "#0D0507",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#FFFFFF",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#F5EDE3",
+            "button": "#D9A44E",
+            "button_label": "#1A0A0E",
+            "secondary_button_label": "#F5EDE3",
+            "shadow": "#000000"
           }
         },
         "scheme-2": {
           "settings": {
-            "background": "#F3F3F3",
+            "background": "#200C11",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#F3F3F3",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#F5EDE3",
+            "button": "#D9A44E",
+            "button_label": "#1A0A0E",
+            "secondary_button_label": "#F5EDE3",
+            "shadow": "#000000"
           }
         },
         "scheme-3": {
           "settings": {
-            "background": "#242833",
+            "background": "#3A2A28",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#000000",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#F5EDE3",
+            "button": "#F5EDE3",
+            "button_label": "#1A0A0E",
+            "secondary_button_label": "#F5EDE3",
+            "shadow": "#000000"
           }
         },
         "scheme-4": {
           "settings": {
-            "background": "#121212",
+            "background": "#C2503F",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#121212",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#F5EDE3",
+            "button": "#F5EDE3",
+            "button_label": "#C2503F",
+            "secondary_button_label": "#F5EDE3",
+            "shadow": "#000000"
           }
         },
         "scheme-5": {
           "settings": {
-            "background": "#334FB4",
+            "background": "#F5EDE3",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#334FB4",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#1A0A0E",
+            "button": "#C2503F",
+            "button_label": "#F5EDE3",
+            "secondary_button_label": "#1A0A0E",
+            "shadow": "#00000022"
           }
         }
       },
-      "type_header_font": "assistant_n4",
+      "type_header_font": "cormorant_n6",
       "heading_scale": 100,
       "type_body_font": "assistant_n4",
       "body_scale": 100,
@@ -177,6 +177,36 @@
       "cart_drawer_collection": "",
       "cart_color_scheme": "scheme-1",
       "sections": {
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "marca": {
+              "type": "brand_information",
+              "settings": { "show_social": true }
+            },
+            "tienda": {
+              "type": "link_list",
+              "settings": { "heading": "Tienda", "menu": "main-menu" }
+            },
+            "ayuda": {
+              "type": "link_list",
+              "settings": { "heading": "Ayuda", "menu": "footer" }
+            }
+          },
+          "block_order": ["marca", "tienda", "ayuda"],
+          "settings": {
+            "newsletter_enable": false,
+            "enable_follow_on_shop": false,
+            "show_social": true,
+            "enable_country_selector": false,
+            "enable_language_selector": false,
+            "payment_enable": true,
+            "show_policy": true,
+            "color_scheme": "scheme-1",
+            "padding_top": 60,
+            "padding_bottom": 36
+          }
+        },
         "main-password-header": {
           "type": "main-password-header",
           "settings": {

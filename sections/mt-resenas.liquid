@@ -1,0 +1,90 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: var(--mt-color-fondo);
+  }
+  #shopify-section-{{ section.id }} .mt-h2 { font-size: {{ section.settings.heading_size }}px; }
+  #shopify-section-{{ section.id }} .mt-resenas__track { --mt-marquee-duracion: {{ section.settings.velocidad }}s; }
+{% endstyle %}
+
+<section class="mt-resenas mt-section">
+  <div class="mt-container">
+    <div class="mt-resenas__head mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}<div class="mt-eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      <h2 class="mt-h2">{{ section.settings.headline }}</h2>
+    </div>
+  </div>
+
+  <div class="mt-resenas__marquee-wrap mt-reveal">
+    <div class="mt-resenas__track">
+      {%- for block in section.blocks -%}
+        <div class="mt-resena-card" {{ block.shopify_attributes }}>
+          <div class="mt-resena-card__estrellas" aria-hidden="true">
+            {%- assign estrellas = block.settings.estrellas -%}
+            {%- for i in (1..5) -%}{% if i <= estrellas %}★{% else %}☆{% endif %}{%- endfor -%}
+          </div>
+          <p class="mt-resena-card__texto">“{{ block.settings.texto }}”</p>
+          <div class="mt-resena-card__autor">
+            <span class="mt-resena-card__avatar">{{ block.settings.nombre | slice: 0, 1 }}</span>
+            {{ block.settings.nombre }}
+          </div>
+        </div>
+      {%- endfor -%}
+      {%- for block in section.blocks -%}
+        <div class="mt-resena-card" aria-hidden="true">
+          <div class="mt-resena-card__estrellas" aria-hidden="true">
+            {%- assign estrellas = block.settings.estrellas -%}
+            {%- for i in (1..5) -%}{% if i <= estrellas %}★{% else %}☆{% endif %}{%- endfor -%}
+          </div>
+          <p class="mt-resena-card__texto">“{{ block.settings.texto }}”</p>
+          <div class="mt-resena-card__autor">
+            <span class="mt-resena-card__avatar">{{ block.settings.nombre | slice: 0, 1 }}</span>
+            {{ block.settings.nombre }}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT — Reseñas",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Opiniones" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Lo que dicen quienes ya lo usan" },
+    { "type": "range", "id": "velocidad", "label": "Velocidad del carrusel (segundos, más alto = más lento)", "min": 15, "max": 60, "step": 1, "default": 38 },
+    { "type": "header", "content": "Tipografía" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 24, "max": 64, "step": 2, "unit": "px", "default": 40 },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "resena",
+      "name": "Reseña",
+      "settings": [
+        { "type": "text", "id": "nombre", "label": "Nombre" },
+        { "type": "range", "id": "estrellas", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "texto", "label": "Texto de la reseña" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT — Reseñas",
+      "blocks": [
+        { "type": "resena", "settings": { "nombre": "Marta G.", "estrellas": 5, "texto": "Lo uso cada noche antes de dormir, es súper relajante y mi pelo se ve con más volumen." } },
+        { "type": "resena", "settings": { "nombre": "Lucía R.", "estrellas": 5, "texto": "La luz roja se nota calentita y el masaje es una pasada. Lo recomiendo muchísimo." } },
+        { "type": "resena", "settings": { "nombre": "Ana P.", "estrellas": 4, "texto": "Fácil de usar y el depósito de sérum es un acierto, no ensucia nada." } },
+        { "type": "resena", "settings": { "nombre": "Sara M.", "estrellas": 5, "texto": "Se ha convertido en mi momento favorito del día, se siente como un spa en casa." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

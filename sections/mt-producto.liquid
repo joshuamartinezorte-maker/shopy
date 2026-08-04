@@ -1,0 +1,209 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'mt-scripts.js' | asset_url }}" defer></script>
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .mt-descripcion { padding-top: {{ section.settings.padding_descripcion }}px; }
+{% endstyle %}
+
+<section class="mt-producto mt-section" data-mt-producto>
+  <div class="mt-container">
+    <div class="mt-producto__grid">
+
+      <div class="mt-galeria mt-reveal">
+        <div class="mt-galeria__principal">
+          <img data-mt-galeria-principal
+               src="{% if section.blocks.size > 0 and section.blocks[0].settings.imagen != blank %}{{ section.blocks[0].settings.imagen | image_url: width: 1200 }}{% endif %}"
+               alt="{{ product.title | escape }}" width="1200" height="1200" loading="eager" fetchpriority="high">
+        </div>
+        <div class="mt-galeria__miniaturas">
+          {%- for block in section.blocks -%}
+            {%- assign idx = forloop.index -%}
+            {%- case idx -%}
+              {%- when 1 -%}{%- assign respaldo = 'mt-producto-galeria-1.jpg' -%}
+              {%- when 2 -%}{%- assign respaldo = 'mt-producto-galeria-2.jpg' -%}
+              {%- when 3 -%}{%- assign respaldo = 'mt-producto-galeria-3.jpg' -%}
+              {%- when 4 -%}{%- assign respaldo = 'mt-beneficio-1.jpg' -%}
+              {%- else -%}{%- assign respaldo = 'mt-paso-2.jpg' -%}
+            {%- endcase -%}
+            {%- if block.settings.imagen != blank -%}
+              {%- assign url_grande = block.settings.imagen | image_url: width: 1200 -%}
+              {%- assign url_mini = block.settings.imagen | image_url: width: 200 -%}
+            {%- else -%}
+              {%- assign url_grande = respaldo | asset_url -%}
+              {%- assign url_mini = respaldo | asset_url -%}
+            {%- endif -%}
+            <button type="button" class="mt-galeria__mini {% if forloop.first %}mt-activo{% endif %}" data-mt-galeria-mini data-full="{{ url_grande }}" {{ block.shopify_attributes }}>
+              <img src="{{ url_mini }}" alt="" width="200" height="200" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="mt-compra mt-reveal">
+        <h1 class="mt-compra__titulo">{{ section.settings.titulo | default: product.title }}</h1>
+
+        <div class="mt-compra__estrellas" aria-hidden="true">★★★★★ <span>({{ section.settings.num_resenas | default: 128 }} opiniones)</span></div>
+
+        <div class="mt-compra__precio">
+          <span class="mt-compra__precio-actual" data-mt-precio-actual>{{ product.selected_or_first_available_variant.price | money }}</span>
+          {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+            <span class="mt-compra__precio-anterior" data-mt-precio-anterior>{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+
+        <p class="mt-compra__intro">{{ section.settings.intro }}</p>
+
+        {% form 'product', product, data-mt-form: true %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-mt-variante-id>
+
+          {%- if product.variants.size > 1 -%}
+            {%- for option in product.options_with_values -%}
+              <div class="mt-opcion">
+                <span class="mt-opcion__label">{{ option.name }}</span>
+                <div class="mt-opcion__valores">
+                  {%- for value in option.values -%}
+                    <button type="button" class="mt-opcion__valor {% if option.selected_value == value %}mt-activo{% endif %}"
+                            data-mt-opcion-valor data-opcion-posicion="{{ option.position }}" data-valor="{{ value | escape }}">
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+            <script type="application/json" data-mt-variantes>{{ product.variants | json }}</script>
+          {%- endif -%}
+
+          <div class="mt-compra__cantidad">
+            <button type="button" data-mt-cantidad-menos aria-label="Restar">−</button>
+            <input type="number" name="quantity" value="1" min="1" data-mt-cantidad>
+            <button type="button" data-mt-cantidad-mas aria-label="Sumar">+</button>
+          </div>
+
+          <button type="submit" name="add" class="mt-btn mt-btn-primario mt-compra__btn-comprar" data-mt-btn-comprar
+                  {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+            <span data-mt-btn-texto>
+              {%- if product.selected_or_first_available_variant.available == false -%}
+                {{ section.settings.texto_agotado }}
+              {%- else -%}
+                {{ section.settings.texto_boton }}
+              {%- endif -%}
+            </span>
+          </button>
+        {% endform %}
+
+        <div class="mt-confianza">
+          <div class="mt-confianza__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg>
+            {{ section.settings.confianza_1 }}
+          </div>
+          <div class="mt-confianza__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1 1 3 6.2"/><path d="M4 7v5h5"/></svg>
+            {{ section.settings.confianza_2 }}
+          </div>
+          <div class="mt-confianza__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>
+            {{ section.settings.confianza_3 }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-descripcion">
+      <div class="mt-descripcion__intro mt-reveal">
+        {%- if section.settings.descripcion_eyebrow != blank -%}<div class="mt-eyebrow">{{ section.settings.descripcion_eyebrow }}</div>{%- endif -%}
+        <h2 class="mt-h2" style="font-size: 34px;">{{ section.settings.descripcion_titulo }}</h2>
+        <p class="mt-body-text" style="margin-top:16px;">{{ section.settings.descripcion_texto }}</p>
+      </div>
+
+      <div class="mt-caracteristicas">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'caracteristica' -%}
+            <div class="mt-caracteristica mt-reveal" {{ block.shopify_attributes }}>
+              <span class="mt-caracteristica__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+              <div>
+                <p class="mt-caracteristica__title">{{ block.settings.titulo }}</p>
+                <p class="mt-caracteristica__text">{{ block.settings.texto }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.incluye != blank -%}
+        <ul class="mt-incluye mt-reveal">
+          {%- assign items = section.settings.incluye | newline_to_br | strip_newlines | split: '<br />' -%}
+          {%- for item in items -%}
+            {%- if item != blank -%}
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                {{ item | strip }}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT — Producto",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título mostrado (vacío = usa el título del catálogo)" },
+    { "type": "number", "id": "num_resenas", "label": "Número de opiniones a mostrar", "default": 128 },
+    { "type": "textarea", "id": "intro", "label": "Frase corta bajo el precio", "default": "Convierte tu rutina capilar en un momento de bienestar diario." },
+    { "type": "text", "id": "texto_boton", "label": "Texto del botón de compra", "default": "Añadir al carrito" },
+    { "type": "text", "id": "texto_agotado", "label": "Texto cuando está agotado", "default": "Agotado" },
+    { "type": "header", "content": "Fila de confianza" },
+    { "type": "text", "id": "confianza_1", "label": "Confianza 1", "default": "Envío gratis y seguro" },
+    { "type": "text", "id": "confianza_2", "label": "Confianza 2", "default": "Devolución 30 días" },
+    { "type": "text", "id": "confianza_3", "label": "Confianza 3", "default": "Pago 100% seguro" },
+    { "type": "header", "content": "Descripción" },
+    { "type": "text", "id": "descripcion_eyebrow", "label": "Texto pequeño superior", "default": "Sobre Orlure" },
+    { "type": "text", "id": "descripcion_titulo", "label": "Título de la descripción", "default": "Diseñado para tu ritual diario" },
+    { "type": "textarea", "id": "descripcion_texto", "label": "Texto de la descripción", "default": "Un cepillo masajeador que une luz roja infrarroja, vibración suave y un depósito para tu sérum favorito, en un cuerpo ligero e inalámbrico pensado para acompañarte cada día." },
+    { "type": "textarea", "id": "incluye", "label": "Qué incluye (una línea por artículo)", "default": "1x Cepillo masajeador capilar Orlure\n1x Cable de carga USB\n1x Guía rápida de uso" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_descripcion", "label": "Espacio antes de la descripción (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "foto_galeria",
+      "name": "Foto de la galería",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Foto" }
+      ]
+    },
+    {
+      "type": "caracteristica",
+      "name": "Característica",
+      "settings": [
+        { "type": "text", "id": "titulo", "label": "Título" },
+        { "type": "textarea", "id": "texto", "label": "Texto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT — Producto",
+      "blocks": [
+        { "type": "foto_galeria" },
+        { "type": "foto_galeria" },
+        { "type": "foto_galeria" },
+        { "type": "caracteristica", "settings": { "titulo": "Luz roja infrarroja 630nm", "texto": "Estimula el cuero cabelludo desde la raíz en cada sesión." } },
+        { "type": "caracteristica", "settings": { "titulo": "3 modos de masaje", "texto": "De un descanso rápido a un masaje profundo tipo EMS." } },
+        { "type": "caracteristica", "settings": { "titulo": "Depósito de 6ML", "texto": "Infunde tu aceite o sérum mientras masajeas, sin goteos." } },
+        { "type": "caracteristica", "settings": { "titulo": "Diseño inalámbrico", "texto": "Ligero, ergonómico y fácil de llevar contigo." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
